@@ -1,0 +1,29 @@
+From 227550ae75b9890b919241f5ed0f69d8bda685ec Mon Sep 17 00:00:00 2001
+From: Anders Roxell <anders.roxell@linaro.org>
+Date: Wed, 12 Aug 2015 15:00:40 +0200
+Subject: [PATCH] common/scripts/parse_lmbench: busybox grep don't support
+ --text
+
+Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
+---
+ common/scripts/parse_lmbench.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/common/scripts/parse_lmbench.sh b/common/scripts/parse_lmbench.sh
+index a2df97f..f6cb8af 100755
+--- a/common/scripts/parse_lmbench.sh
++++ b/common/scripts/parse_lmbench.sh
+@@ -3,8 +3,8 @@
+ LOG_FILE=$1
+ OUTPUT_FILE=$3
+ TMP_FILE="$1.$$"
+-BEGIN=$(grep --text -n "^BEGIN LMBENCH" $LOG_FILE | awk -F ':' '{print $1}')
+-END=$(grep --text -n "^END LMBENCH" $LOG_FILE | awk -F ':' '{print $1}')
++BEGIN=$(cat $LOG_FILE | grep -n "^BEGIN LMBENCH" | awk -F ':' '{print $1}')
++END=$(cat $LOG_FILE | grep -n "END LMBENCH" | awk -F ':' '{print $1}')
+ BEGINNING=$(expr $(expr $END - $BEGIN) + 1)
+ head -n $END $LOG_FILE | tail -n $BEGINNING >$TMP_FILE
+ 
+-- 
+2.1.4
+
