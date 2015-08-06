@@ -1,0 +1,5 @@
+config BR2_PACKAGE_LINARO_TESTSUITES
+	bool "linaro_testsuites"
+	help
+	  Tests from linaros test repository.
+	  http://releases.linaro.org/components/platform/linaro-test-suites
