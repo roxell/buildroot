@@ -1,0 +1,5 @@
+config BR2_PACKAGE_LAVA_TEST_SHELL
+	bool "lava-test-shell"
+	help
+	  LAVA scripts needed to run yaml files from linaros lava-dispatcher repository..
+	  https://git.linaro.org/lava/lava-dispatcher.git
